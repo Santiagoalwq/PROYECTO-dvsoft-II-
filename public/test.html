@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test API Ventas</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 20px auto; padding: 0 20px; }
+        .card { border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 4px; }
+        button { padding: 8px 15px; margin: 5px; cursor: pointer; }
+        pre { background: #f5f5f5; padding: 10px; border-radius: 4px; overflow-x: auto; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Test API Ventas</h1>
+    
+    <div class="card">
+        <h2>1. Health Check</h2>
+        <button onclick="checkHealth()">Probar /api/health</button>
+        <pre id="healthResult"></pre>
+    </div>
+
+    <div class="card">
+        <h2>2. Crear Cliente</h2>
+        <button onclick="createClient()">Crear Cliente de Prueba</button>
+        <pre id="clientResult"></pre>
+    </div>
+
+    <div class="card">
+        <h2>3. Crear Producto</h2>
+        <button onclick="createProduct()">Crear Producto de Prueba</button>
+        <pre id="productResult"></pre>
+    </div>
+
+    <div class="card">
+        <h2>4. Crear Venta</h2>
+        <button onclick="createSale()">Crear Venta de Prueba</button>
+        <pre id="saleResult"></pre>
+    </div>
+
+    <div class="card">
+        <h2>5. Verificar Stock</h2>
+        <button onclick="checkStock()">Verificar Stock Actualizado</button>
+        <pre id="stockResult"></pre>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:45678/api';
+        let clientId, productId;
+
+        window.onerror = function(msg, url, line) {
+            alert(`Error en JavaScript: ${msg}\nLínea: ${line}`);
+            return false;
+        };
+
+        async function displayResult(elementId, promise) {
+            const element = document.getElementById(elementId);
+            try {
+                const response = await promise;
+                const data = await response.json();
+                element.innerHTML = `<span class="success">✓ OK</span>\n${JSON.stringify(data, null, 2)}`;
+                return data;
+            } catch (error) {
+                element.innerHTML = `<span class="error">✗ Error</span>\n${error.message}`;
+                throw error;
+            }
+        }
+
+        async function checkHealth() {
+            await displayResult('healthResult', 
+                fetch(`${API_URL}/health`)
+            );
+        }
+
+        let clientCounter = 1;
+        async function createClient() {
+            const data = await displayResult('clientResult',
+                fetch(`${API_URL}/clientes`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        nombre: `Cliente Test ${clientCounter}`,
+                        identificacion: `ID${String(clientCounter).padStart(8, '0')}`,
+                        direccion: `Calle ${clientCounter}`,
+                        telefono: `300${String(clientCounter).padStart(7, '0')}`,
+                        email: `cliente${clientCounter}@test.com`
+                    })
+                })
+            );
+            clientId = data.id;
+            clientCounter++;
+        }
+
+        let productCounter = 1;
+        async function createProduct() {
+            const data = await displayResult('productResult',
+                fetch(`${API_URL}/productos`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        codigo: `PROD${String(productCounter).padStart(4, '0')}`,
+                        nombre: `Producto Test ${productCounter}`,
+                        descripcion: `Descripción del producto ${productCounter}`,
+                        precio_venta: 100.00 * productCounter,
+                        costo: 80.00 * productCounter,
+                        cantidad_stock: 10
+                    })
+                })
+            );
+            productId = data.id;
+            productCounter++;
+        }
+
+    let saleCounter = 1;
+        async function createSale() {
+            if (!clientId || !productId) {
+                alert('Primero crea un cliente y un producto');
+                return;
+            }
+            await displayResult('saleResult',
+                fetch(`${API_URL}/ventas`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        cliente_id: clientId,
+                        items: [{
+                            producto_id: productId,
+                            cantidad: saleCounter
+                        }],
+                        descuento: saleCounter * 5
+                    })
+                })
+            );
+            saleCounter++;
+        }
+
+        async function checkStock() {
+            if (!productId) {
+                alert('Primero crea un producto');
+                return;
+            }
+            await displayResult('stockResult',
+                fetch(`${API_URL}/productos/${productId}`)
+            );
+        }
+    </script>
+</body>
+</html>
