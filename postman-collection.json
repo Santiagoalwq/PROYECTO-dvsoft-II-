@@ -1,0 +1,487 @@
+{
+  "info": {
+    "name": "Microservicios - Clientes, Productos, Ventas",
+    "description": "Colección de endpoints para pruebas de los 3 microservicios independientes",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Clientes (3001)",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/health",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["health"]
+            }
+          }
+        },
+        {
+          "name": "Listar Clientes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/clientes",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["clientes"]
+            }
+          }
+        },
+        {
+          "name": "Obtener Cliente Específico",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/clientes/c1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["clientes", "c1"]
+            }
+          }
+        },
+        {
+          "name": "Crear Cliente",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Nuevo Cliente\",\n  \"email\": \"nuevo@example.com\",\n  \"telefono\": \"555-9999\",\n  \"direccion\": \"Calle Nueva 999\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/clientes",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["clientes"]
+            }
+          }
+        },
+        {
+          "name": "Actualizar Cliente",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Juan García Actualizado\",\n  \"email\": \"juan.nuevo@example.com\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/clientes/c1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["clientes", "c1"]
+            }
+          }
+        },
+        {
+          "name": "Eliminar Cliente",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/clientes/c1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["clientes", "c1"]
+            }
+          }
+        },
+        {
+          "name": "Validar Cliente (interno)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/clientes/validar/c1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["clientes", "validar", "c1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Productos (3002)",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3002/health",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3002",
+              "path": ["health"]
+            }
+          }
+        },
+        {
+          "name": "Listar Productos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3002/productos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3002",
+              "path": ["productos"]
+            }
+          }
+        },
+        {
+          "name": "Obtener Producto Específico",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3002/productos/p1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3002",
+              "path": ["productos", "p1"]
+            }
+          }
+        },
+        {
+          "name": "Crear Producto",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Nuevo Producto\",\n  \"descripcion\": \"Descripción del nuevo producto\",\n  \"precio\": 299.99,\n  \"stock\": 50,\n  \"categoria\": \"Electrónica\",\n  \"sku\": \"SKU-999\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3002/productos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3002",
+              "path": ["productos"]
+            }
+          }
+        },
+        {
+          "name": "Actualizar Producto",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Laptop Dell XPS 13 - Actualizado\",\n  \"precio\": 1199.99,\n  \"stock\": 10\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3002/productos/p1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3002",
+              "path": ["productos", "p1"]
+            }
+          }
+        },
+        {
+          "name": "Eliminar Producto",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3002/productos/p1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3002",
+              "path": ["productos", "p1"]
+            }
+          }
+        },
+        {
+          "name": "Validar Disponibilidad",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cantidad\": 1\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3002/productos/validar/p1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3002",
+              "path": ["productos", "validar", "p1"]
+            }
+          }
+        },
+        {
+          "name": "Reservar Stock",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cantidad\": 1\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3002/productos/reservar/p1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3002",
+              "path": ["productos", "reservar", "p1"]
+            }
+          }
+        },
+        {
+          "name": "Liberar Stock",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cantidad\": 1\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3002/productos/liberar/p1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3002",
+              "path": ["productos", "liberar", "p1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Ventas (3003)",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3003/health",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3003",
+              "path": ["health"]
+            }
+          }
+        },
+        {
+          "name": "Listar Ventas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3003/ventas",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3003",
+              "path": ["ventas"]
+            }
+          }
+        },
+        {
+          "name": "Obtener Venta Específica",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3003/ventas/v1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3003",
+              "path": ["ventas", "v1"]
+            }
+          }
+        },
+        {
+          "name": "Crear Venta (Transacción exitosa)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clienteId\": \"c1\",\n  \"items\": [\n    { \"productoId\": \"p1\", \"cantidad\": 1 },\n    { \"productoId\": \"p2\", \"cantidad\": 2 }\n  ],\n  \"metodoPago\": \"tarjeta\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3003/ventas",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3003",
+              "path": ["ventas"]
+            }
+          }
+        },
+        {
+          "name": "Crear Venta (Cliente inválido - Error)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clienteId\": \"cliente-invalido-xyz\",\n  \"items\": [\n    { \"productoId\": \"p1\", \"cantidad\": 1 }\n  ],\n  \"metodoPago\": \"efectivo\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3003/ventas",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3003",
+              "path": ["ventas"]
+            }
+          }
+        },
+        {
+          "name": "Crear Venta (Stock insuficiente - Error)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clienteId\": \"c1\",\n  \"items\": [\n    { \"productoId\": \"p1\", \"cantidad\": 999 }\n  ],\n  \"metodoPago\": \"tarjeta\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3003/ventas",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3003",
+              "path": ["ventas"]
+            }
+          }
+        },
+        {
+          "name": "Actualizar Estado de Venta",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"estado\": \"pendiente\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3003/ventas/v1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3003",
+              "path": ["ventas", "v1"]
+            }
+          }
+        },
+        {
+          "name": "Cancelar Venta",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3003/ventas/v1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3003",
+              "path": ["ventas", "v1"]
+            }
+          }
+        },
+        {
+          "name": "Ventas de un Cliente",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3003/ventas/cliente/c1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3003",
+              "path": ["ventas", "cliente", "c1"]
+            }
+          }
+        },
+        {
+          "name": "Resumen de Ventas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3003/reportes/resumen",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3003",
+              "path": ["reportes", "resumen"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

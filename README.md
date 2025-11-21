@@ -1,3 +1,7 @@
-Santiago Alexander Bolaños Angulo : 4088967
+<<<<<<< HEAD
+Jaider Manrique 
+Santiago Bolaños
 
-Jose Jaider Manrique Sanchez: 408715
+=======
+# D.software_ExamenFinal
+>>>>>>> 30d8052f7f5d2200b36b8e6290a8dd9991ea0264
